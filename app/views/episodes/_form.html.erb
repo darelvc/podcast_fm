@@ -1,5 +1,16 @@
 <%= form_for ([@podcast, @episode]) do |f| %>
 
+	<% if @episode.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@episode.errors.count, "error") %> prohibited this podcast from being saved:</h2>
+			<% @episode.errors.full_messages.each do |msg| %>
+				<ul>
+					<li><%= msg %></li>
+				</ul>
+			<% end %>
+		</div>
+	<% end %>
+
 	<div class="field">
 	  <%= f.label :title %><br />
 	  <%= f.text_field :title, autofocus: true %>
@@ -13,6 +24,11 @@
 	<div class="field">
 	  <%= f.label :episode_thumbnail %><br />
 	  <%= f.file_field :episode_thumbnail %>
+	</div>
+
+	<div class="field">
+	  <%= f.label :mp3 %><br />
+	  <%= f.file_field :mp3 %>
 	</div>
 
 	<%= f.submit class: "button button_highlight button_block" %>
