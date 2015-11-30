@@ -30,7 +30,11 @@
 			<%= image_tag @episode.episode_thumbnail.url(:medium), class: "current_episode_thumbnail" %>
 			<h2><%= @episode.title %></h2>
 			<p class="description"><%= @episode.description %></p>
-			<%= render 'jplayer' %>
+			<% if @episode.mp3_file_name.blank? %>
+				<p class="not-mp3">There are no mp3.</p>
+			<% else %>
+				<%= render 'jplayer' %>
+			<% end %>
 		</div>	
 	</div>
 
